@@ -79,10 +79,6 @@ Example:
 - Better sound effects
 - Particle effects when bricks break
 
-## Author
-
-Aprajita Srivastava
-
 ## Notes
 
 This project was originally from https://github.com/OtspIII/SimpleGames/     

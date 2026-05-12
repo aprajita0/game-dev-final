@@ -32,6 +32,25 @@ public class BreakoutManager : MonoBehaviour
     public string LoseSceneName = "Game Over";
     public string WinSceneName = "You Win";
 
+    [Header("Brick Colors")]
+    public Color[] NormalBrickColors =
+    {
+        Color.blue,
+        Color.cyan,
+        Color.green,
+        new Color(1f, 0.5f, 0f),
+        new Color(0.5f, 0f, 1f)
+    };
+
+    public Color NormalBrickDamagedColor = Color.gray;
+
+    [Header("Strong Bricks")]
+    [Range(0f, 1f)]
+    public float StrongBrickChance = 0.2f;
+
+    public Color StrongBrickColor = Color.red;
+    public Color StrongBrickDamagedColor = Color.yellow;
+
     void Start()
     {
         //I need to register myself as 'the' BreakoutManager
@@ -49,8 +68,8 @@ public class BreakoutManager : MonoBehaviour
         }
     }
 
-   public void SpawnBricks()
-   {
+    public void SpawnBricks()
+    {
         SpriteRenderer sr = BrickPrefab.GetComponent<SpriteRenderer>();
         Vector2 brickSize = sr.bounds.size;
 
@@ -64,10 +83,50 @@ public class BreakoutManager : MonoBehaviour
                     0f
                 );
 
-                Instantiate(BrickPrefab, pos, Quaternion.identity);
+                BrickController newBrick = Instantiate(
+                    BrickPrefab,
+                    pos,
+                    Quaternion.identity
+                );
+
+                bool isStrongBrick = Random.value < StrongBrickChance;
+
+                if (isStrongBrick)
+                {
+                    newBrick.SetupBrick(
+                        2,
+                        250,
+                        StrongBrickColor,
+                        StrongBrickDamagedColor
+                    );
+                }
+                else
+                {
+                    Color chosenColor = GetRandomNormalBrickColor();
+
+                    newBrick.SetupBrick(
+                        1,
+                        100,
+                        chosenColor,
+                        NormalBrickDamagedColor
+                    );
+                }
             }
         }
-   }
+    }
+
+    Color GetRandomNormalBrickColor()
+    {
+        if (NormalBrickColors != null && NormalBrickColors.Length > 0)
+        {
+            return NormalBrickColors[
+                Random.Range(0, NormalBrickColors.Length)
+            ];
+        }
+
+        return Color.white;
+    }
+
 
    public void AddScore(int points)
    {

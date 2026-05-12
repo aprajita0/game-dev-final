@@ -33,14 +33,11 @@ public class PaddleController : MonoBehaviour
     }
 
     //What X velocity should the ball have when it hits the paddle?
-    //AKA-how does aiming with the paddle work
     public float BounceAngle(BallController ball)
     {
         float offset = ball.transform.position.x - transform.position.x;
         //Get half the width, so I can scale this nicely
         float halfWidth = GetComponent<Collider2D>().bounds.extents.x;
-        //Turn the offset into a number from -1 to 1
-        //-1 means left, 0 means center, 1 means right
         float normalizedOffset = Mathf.Clamp(offset / halfWidth, -1f, 1f);
         //Return an X velocity based on where the ball hit the paddle
         return normalizedOffset * MaxBounceX;

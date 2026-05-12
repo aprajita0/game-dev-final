@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,16 +9,68 @@ public class BrickController : MonoBehaviour
 {
     public SpriteRenderer SR;
     public int ScoreValue = 100;
+    public int HitsToBreak = 1;
+    private int currentHits;
+
+    public bool UseRandomColor = true;
+    public Color NormalColor = Color.white;
+    public Color DamagedColor = Color.gray;
     public AudioClip BreakSound;
     public float BreakSoundVolume = 1f;
     
+    void Awake()
+    {
+        if (BreakoutManager.Me != null)
+        {
+            BreakoutManager.Me.AllBricks.Add(this);
+        }   
+    }
+    
+    
     void Start()
     {
-        //Register me to the list of all bricks that exist
-        //Note that this uses the Static Variable we set up on BreakoutManager
-        BreakoutManager.Me.AllBricks.Add(this);
-        //Make yourself a random color
-        SR.color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+        currentHits = HitsToBreak;
+        UpdateColor();
+    }
+
+    public void SetupBrick(int hitsToBreak, int scoreValue, Color normalColor, Color damagedColor)
+    {
+        HitsToBreak = hitsToBreak;
+        ScoreValue = scoreValue;
+        NormalColor = normalColor;
+        DamagedColor = damagedColor;
+        currentHits = HitsToBreak;
+        UpdateColor();
+    }
+
+    public void TakeHit()
+    {
+        currentHits--;
+        if (currentHits <= 0)
+        {
+            Break();
+        }
+        else
+        {
+            UpdateColor();
+        }
+    }
+
+
+    private void UpdateColor()
+    {
+        if (SR == null)
+            return;
+        if (currentHits < HitsToBreak)
+        {
+            SR.color = DamagedColor;
+        }
+
+        else
+        {
+            SR.color = NormalColor;
+        }
+        
     }
 
     //This code makes the brick break
@@ -26,7 +79,7 @@ public class BrickController : MonoBehaviour
         //Destroy the brick
         //If we wanted to make any fancy effects, we could do that here
 
-        //Play a sound when we break
+        //Play a sound when break
         if (BreakSound != null)
         {
             AudioSource.PlayClipAtPoint(BreakSound, transform.position, BreakSoundVolume);

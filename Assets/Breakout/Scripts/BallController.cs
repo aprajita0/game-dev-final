@@ -88,7 +88,7 @@ public class BallController : MonoBehaviour
             //Keep my direction, but apply my updated speed
             newVel = newVel.normalized * BallSpeed;
 
-            bc.Break();
+            bc.TakeHit();
 
             //I've calculated any bouncing I need to do
             RB.linearVelocity = newVel;

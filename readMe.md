@@ -15,6 +15,12 @@ A simple Breakout-style game made in Unity using C#. The player controls a paddl
 - Brick break sound effect
 - Paddle shrinks as score increases
 - Color palette for normal bricks
+## How to Run
+
+- Clone the repo
+- Open in Unity Hub
+- Load the scene from Assets/Breakout/Breakout
+- Press Play
 
 ## How to Play
 

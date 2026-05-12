@@ -33,6 +33,8 @@ public class BreakoutManager : MonoBehaviour
     public string WinSceneName = "You Win";
 
     [Header("Brick Colors")]
+    
+    //This is not working since initially i didnt have any other color but white now i had to change in inspector almost made me lose my mind ;-;
     public Color[] NormalBrickColors =
     {
         Color.blue,
@@ -89,6 +91,7 @@ public class BreakoutManager : MonoBehaviour
                     Quaternion.identity
                 );
 
+                //Decide if this brick should be a strong brick
                 bool isStrongBrick = Random.value < StrongBrickChance;
 
                 if (isStrongBrick)
@@ -102,8 +105,9 @@ public class BreakoutManager : MonoBehaviour
                 }
                 else
                 {
+                    //Pick one normal color from the list for this brick
                     Color chosenColor = GetRandomNormalBrickColor();
-
+                    //Normal bricks take 1 hit and give normal points
                     newBrick.SetupBrick(
                         1,
                         100,
@@ -123,6 +127,8 @@ public class BreakoutManager : MonoBehaviour
                 Random.Range(0, NormalBrickColors.Length)
             ];
         }
+        //If the list is empty, just use white as a backup this backfired on me lowkey as even when i had the list it still said nope only had white
+        //I had to manualy go on breakout manager and assign the colors there to make it work 
 
         return Color.white;
     }
@@ -133,6 +139,7 @@ public class BreakoutManager : MonoBehaviour
        Score += points;
        if (Paddle != null)
        {
+           //As the score goes up, make the paddle smaller because why not make the game harder as you do better hehe 
            Paddle.UpdateSizeFrom(Score);
        }
        UpdateUI();

@@ -8,7 +8,7 @@ public class PaddleController : MonoBehaviour
     public float ScreenBounds;
     public float MaxBounceX = 6f;
     public float StartSizeX = 2.5f;
-    public float SizeDecreasePerStep = 0.2f;  
+    public float SizeDecreasePerStep = 0.3f;  
     void Update()
     {
         //Calculate what my position should be

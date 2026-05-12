@@ -21,8 +21,11 @@ public class BallController : MonoBehaviour
         //I record where I started, so I can respawn there
         StartPos = transform.position;
 
+        
+        //My speed based on starting velocity
         BallSpeed = StartVel.magnitude;
-
+        
+        //go little ball go
         RB.linearVelocity = StartVel;
     }
 
@@ -52,6 +55,7 @@ public class BallController : MonoBehaviour
         //Use my saved velocity from before the collision happened
         Vector2 vel = LastVel;
 
+        //In case physics forgit what i was doing
         if (vel.magnitude < 0.01f)
             vel = RB.linearVelocity;
         if (vel.magnitude < 0.01f)
@@ -61,10 +65,11 @@ public class BallController : MonoBehaviour
             collision.gameObject.GetComponent<PaddleController>();
         if (pc != null)
         {
+            //ask paddle how dramatic this bounce should be 
             Vector2 newVel = new Vector2(pc.BounceAngle(this), 1.5f);
 
             newVel = FixFlatBounce(newVel, true);
-
+            //same speed, new direction
             newVel = newVel.normalized * BallSpeed;
 
             RB.linearVelocity = newVel;
@@ -79,7 +84,7 @@ public class BallController : MonoBehaviour
             ContactPoint2D contact = collision.GetContact(0);
             Vector2 newVel = Vector2.Reflect(vel, contact.normal);
 
-            //Make the game speed up a little whenever I break a brick
+            //Make the game speed up a little whenever I break a brick because peace was never an option :D
             BallSpeed += SpeedIncreasePerBrick;
 
             //Make sure I'm not too flat
@@ -87,7 +92,7 @@ public class BallController : MonoBehaviour
 
             //Keep my direction, but apply my updated speed
             newVel = newVel.normalized * BallSpeed;
-
+            //Tell Brick ive been bonked, so it can break if it's supposed to
             bc.TakeHit();
 
             //I've calculated any bouncing I need to do
@@ -121,11 +126,13 @@ public class BallController : MonoBehaviour
 
         if (Mathf.Abs(dir.y) < MinYDirection)
         {
+            //No pancake bounces allowed
             dir.y = forceUp ? MinYDirection : -MinYDirection;
 
             
             if (Mathf.Abs(dir.x) < 0.01f)
             {
+                //If I'm almost going perfectly vertical, give me a little shove
                 if (LastVel.x >= 0)
                     dir.x = 1f;
                 else

@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Breakout/Game Over.unity
     guid: b259e0af5cc5cd24da478e5e3020a77d
   - enabled: 1
+    path: Assets/Breakout/You Win.unity
+    guid: 894b06869a14c164d982742f7f374b10
+  - enabled: 0
     path: Assets/Generic Assets/You Win.unity
     guid: 91cfb6caa580edb4aa5894a0cb132bc1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Generic Assets/You Lose.unity
     guid: 44c9c043ab0c1d045b5f53f6f89f610a
   m_configObjects: {}

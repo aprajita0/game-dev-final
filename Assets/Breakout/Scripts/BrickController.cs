@@ -8,6 +8,8 @@ public class BrickController : MonoBehaviour
 {
     public SpriteRenderer SR;
     public int ScoreValue = 100;
+    public AudioClip BreakSound;
+    public float BreakSoundVolume = 1f;
     
     void Start()
     {
@@ -23,6 +25,12 @@ public class BrickController : MonoBehaviour
     {
         //Destroy the brick
         //If we wanted to make any fancy effects, we could do that here
+
+        //Play a sound when we break
+        if (BreakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(BreakSound, transform.position, BreakSoundVolume);
+        }
         
         //Add score to the player
         if (BreakoutManager.Me != null)

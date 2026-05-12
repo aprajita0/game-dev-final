@@ -1306,11 +1306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: StartVel.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: StartVel.y
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: MinYDirection
@@ -1427,11 +1427,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5818839310252882439, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
       propertyPath: Speed
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5818839310252882439, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
       propertyPath: MaxBounceX
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5818839310252882439, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
+      propertyPath: SizeDecreasePerStep
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7777988289686774862, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
       propertyPath: m_Name

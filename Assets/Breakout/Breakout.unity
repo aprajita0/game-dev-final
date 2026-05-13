@@ -1306,11 +1306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: StartVel.x
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: StartVel.y
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3284146719190942760, guid: f36109669e3d5ba41afdbf25498eea1c, type: 3}
       propertyPath: MinYDirection
@@ -1427,7 +1427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5818839310252882439, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
       propertyPath: Speed
-      value: 13
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5818839310252882439, guid: 9ff48e621b6c00840892ccbdb1abbec7, type: 3}
       propertyPath: MaxBounceX
